@@ -8,6 +8,8 @@ class Talaba(models.Model):
     kurs = models.PositiveSmallIntegerField(validators=[MaxValueValidator(5)], default=1)
     kitob_soni = models.PositiveIntegerField(default=0)
 
+    objects: models.Manager['Talaba']  # type hint (IDE uchun)
+
     def __str__(self):
         return self.ism
 
@@ -16,8 +18,10 @@ class Talaba(models.Model):
 
 
 class Muallif(models.Model):
+    objects: models.Manager['Muallif']  # type hint (IDE uchun)
+
     class JINS_CHOICES(models.TextChoices):
-        ERKAK = "Erkak", "Erkak"
+        ERKAK = "Erkak","Erkak"
         AYOL = "Ayol", "Ayol"
 
     ism = models.CharField(max_length=255)

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Recordlar ro‘yxati</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">📚 Recordlar ro‘yxati</h2>
+
+    <!-- Recordlar jadvali -->
+    <table class="table table-bordered table-striped shadow-sm">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>#</th>
+                <th>Talaba</th>
+                <th>Kitob</th>
+                <th>Kutubxonachi</th>
+                <th>Olingan sana</th>
+                <th>Qaytargan sana</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr class="text-center">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ record.talaba }}</td>
+                <td>{{ record.kitob }}</td>
+                <td>{{ record.kutubxonachi }}</td>
+                <td>{{ record.olingan_sana|date:"Y-m-d H:i" }}</td>
+                <td>
+                    {% if record.qaytargan_sana %}
+                        {{ record.qaytargan_sana|date:"Y-m-d H:i" }}
+                    {% else %}
+                        <span class="text-muted">Qaytarmagan</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6" class="text-center">Hozircha recordlar yo‘q</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Yangi record qo‘shish formasi -->
+    <div class="d-flex justify-content-center mt-5">
+        <div class="card p-4 shadow-sm w-50">
+            <h4 class="text-center mb-3">➕ Yangi Record qo‘shish</h4>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success w-100">Saqlash</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

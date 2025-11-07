@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>📘 Kitoblar ro'yxati</title>
+    <style>
+        body {
+            font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #007bff, #00c6ff);
+            color: white;
+            text-align: center;
+            padding: 25px 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            letter-spacing: 1px;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: white;
+            background-color: #28a745;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link:hover {
+            background-color: #1e7e34;
+            transform: scale(1.05);
+        }
+
+        main {
+            width: 85%;
+            margin: 40px auto;
+            background-color: #ffffffcc;
+            backdrop-filter: blur(5px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .book {
+            background-color: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            transition: 0.3s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .book:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+        }
+
+        .book h3 {
+            margin: 0 0 10px;
+            color: #007bff;
+        }
+
+        .book a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .book a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #b02a37;
+            transform: scale(1.05);
+        }
+
+        .form-container {
+            width: 85%;
+            margin: 40px auto;
+            background: #ffffffcc;
+            backdrop-filter: blur(5px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0,123,255,0.5);
+        }
+
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.7);
+            backdrop-filter: blur(4px);
+            color: #444;
+            margin-top: 40px;
+            font-size: 14px;
+            box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
+        }
+
+        .no-books {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>📚 Kitoblar ro'yxati</h1>
+        <a class="home-link" href="/">🏠 Bosh sahifa</a>
+    </header>
+
+    <main>
+        {% for kitob in kitoblar %}
+        <li>
+            {{ kitob.nom }}
+            <a href="">
+                 <button style="
+    border: 1px solid #5563DE;
+    background: linear-gradient(135deg, #6A75FF, #4854C8);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+">
+  Edit
+</button>
+            </a>
+        </li>
+            <div class="book">
+                <h3>{{ forloop.counter }}. <a href="/kitoblar/{{ kitob.id }}/">{{ kitob.nom }}</a></h3>
+                <p>📖 Janr: <strong>{{ kitob.janr }}</strong></p>
+                <p>📄 Sahifalar soni: {{ kitob.sahifa }}</p>
+                <p>✍️ Muallif: <strong>{{ kitob.muallif.ism }}</strong></p>
+                <a href="/kitoblar/{{ kitob.id }}/delete/confirm/">
+                    <button>🗑️ O‘chirish</button>
+                </a>
+            </div>
+        {% empty %}
+            <p class="no-books">📚 Hozircha hech qanday kitob mavjud emas.</p>
+        {% endfor %}
+    </main>
+
+    <section class="form-container">
+        <h2>➕ Yangi kitob qo‘shish</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="nom">Nom:</label>
+            <input id="nom" type="text" name="nom" required>
+
+            <label for="janr">Janr:</label>
+            <input id="janr" type="text" name="janr" required>
+
+            <label for="sahifa">Sahifa soni:</label>
+            <input id="sahifa" type="number" name="sahifa" required>
+
+            <label for="muallif">Muallif:</label>
+            <select name="muallif_id" id="muallif" required>
+                {% for muallif in mualliflar %}
+                    <option value="{{ muallif.id }}">{{ muallif.ism }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="submit-btn">📘 Qo‘shish</button>
+        </form>
+    </section>
+
+    <footer>
+        © 2025 Kutubxona tizimi | Dasturchi: <strong>Qilichbek</strong> 💻
+    </footer>
+</body>
+</html>
+

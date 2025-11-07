@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Kutubxona | Mualliflar ro'yxati</title>
+    <style>
+        /* 🌈 Umumiy sahifa dizayni */
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #eef2ff, #dbeafe);
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1e40af, #1d4ed8);
+            color: white;
+            text-align: center;
+            padding: 25px 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* 🔍 Qidiruv va filterlar */
+        .filters {
+            max-width: 700px;
+            margin: 25px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .filters form {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="text"], select {
+            padding: 8px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 4px rgba(37,99,235,0.3);
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1e3a8a;
+            transform: scale(1.05);
+        }
+
+        /* 📚 Asosiy container */
+        main {
+            max-width: 750px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 25px 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .home-link {
+            display: inline-block;
+            text-decoration: none;
+            background: #22c55e;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 10px;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .home-link:hover {
+            background: #16a34a;
+            transform: scale(1.05);
+        }
+
+        /* 👨‍💼 Mualliflar ro'yxati */
+        .authors {
+            margin-top: 25px;
+        }
+
+        .author-item {
+            background: #f8fafc;
+            border-left: 5px solid #2563eb;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .author-item:hover {
+            background: #e0f2fe;
+            transform: translateX(5px);
+        }
+
+        .author-info {
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #b91c1c;
+        }
+
+        /* ➕ Muallif qo‘shish formasi */
+        .add-form {
+            max-width: 750px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 25px 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .add-form h2 {
+            text-align: center;
+            color: #1e40af;
+        }
+
+        label {
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+
+        .add-form input, .add-form select {
+            width: 100%;
+            margin-top: 6px;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .add-form input:focus, .add-form select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 5px rgba(37,99,235,0.3);
+        }
+
+        .add-form button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            color: #475569;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            main, .add-form {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📚 Mualliflar ro'yxati</h1>
+    </header>
+
+    <div class="filters">
+        <form>
+            <input type="text" name="search" placeholder="Ism bo‘yicha qidirish...">
+            <button>Qidirish</button>
+        </form>
+
+        <form>
+            <select name="order">
+                <option value="ism">Ism (A-Z)</option>
+                <option value="-ism">Ism (Z-A)</option>
+            </select>
+            <button>Sort</button>
+        </form>
+
+        <form method="get">
+            <select name="filter">
+                <option value="">Barcha mualliflar</option>
+                <option value="Ali">Ali</option>
+                <option value="Vali">Vali</option>
+                <option value="Sodiq">Sodiq</option>
+                <option value="Dilshod">Dilshod</option>
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+
+    <main>
+        <a class="home-link" href="/">🏠 Bosh sahifa</a>
+        <div class="authors">
+            {% for muallif in mualliflar %}
+                <div class="author-item">
+                    <div class="author-info">
+                        {{ forloop.counter }}.
+                        <a href="/mualliflar/{{ muallif.id }}/">{{ muallif.ism }}</a>
+                    </div>
+                    <a href="/mualliflar/{{ muallif.id }}/delete/confirm/">
+                        <button class="delete-btn">🗑️ O‘chirish</button>
+                    </a>
+                </div>
+            {% empty %}
+                <p>📖 Hozircha hech qanday muallif yo‘q.</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <section class="add-form">
+        <h2>➕ Yangi muallif qo‘shish</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="ism">Ism:</label>
+            <input id="ism" type="text" name="ism" required>
+
+            <label for="jins">Jins:</label>
+            <select id="jins" name="jins" required>
+                <option value="Erkak">Erkak</option>
+                <option value="Ayol">Ayol</option>
+            </select>
+
+            <label for="t_sana">Tug‘ilgan sana:</label>
+            <input id="t_sana" type="date" name="t_sana">
+
+            <label for="kitob_soni">Kitob soni:</label>
+            <input id="kitob_soni" type="number" name="kitob_soni" value="1" min="1">
+
+            <label for="tirik">Tirik:</label>
+            <select id="tirik" name="tirik">
+                <option value="True">Ha</option>
+                <option value="False">Yo‘q</option>
+            </select>
+
+            <button type="submit">Qo‘shish</button>
+        </form>
+    </section>
+
+    <footer>
+        © 2025 Kutubxona tizimi | Dasturchi: <strong>Qilichbek</strong> 💻
+    </footer>
+</body>
+</html>

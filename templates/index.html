@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Bosh sahifa</title>
+    <style>
+        /* Umumiy sahifa dizayni */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #74ABE2, #5563DE);
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        hr {
+            width: 60%;
+            border: none;
+            height: 2px;
+            background: rgba(255,255,255,0.4);
+            margin: 30px 0;
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            margin: 10px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        a:hover {
+            background: #fff;
+            color: #5563DE;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 15px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* Tugmalar animatsiyasi */
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        a {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* Responsive dizayn */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            a {
+                font-size: 1em;
+                padding: 10px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Bosh sahifa</h1>
+    <p>Bugun sana: {{now.day}}.{{now.month}}.{{now.year}}</p>
+    <hr>
+    <a href="/talabalar/">🎓 Talabalar</a>
+    <a href="/mualliflar/">✍️ Mualliflar</a>
+    <a href="/kitoblar/">📖 Kitoblar</a>
+    <a href="/tirik mualliflar/">🌿 1. Tirik mualliflar</a>
+    <a href="/recordlar/">📚 Recordlar</a>
+
+
+</body>
+</html>

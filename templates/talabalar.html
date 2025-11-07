@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kutubxona | Talabalar ro'yxati</title>
+</head>
+<body>
+    <h1>Talabalar ro'yxati</h1>
+    <hr>
+    <form>
+        <input type="text" name="search" placeholder="ism bo'yicha......">
+        <button>Qidirish</button>
+    </form>
+    <br>
+    <form>
+        <select name="order">
+            <option value="ism">Ism (a-z)</option>
+            <option value="-ism">Ism (z-a)</option>
+            <option value="-kitob_soni">Kitob kamayish tartibida</option>
+            <option value="kitob_soni">Kitob o'sish tartibida</option>
+        </select>
+        <button>Go</button>
+    </form>
+    <br>
+        <form>
+        <select name="filter">
+             <option value="1" {% if kurs == 1 %} selected {% endif %}>1-kurs</option>
+             <option value="2" {% if kurs == 2 %} selected {% endif %}>2-kurs</option>
+             <option value="3" {% if kurs == 3 %} selected {% endif %}>3-kurs</option>
+             <option value="4" {% if kurs == 4 %} selected {% endif %}>4-kurs</option>
+        </select>
+        <button>Filter</button>
+    </form>
+    <hr>
+    <a href="/">Bosh sahifa</a>
+    {% for talaba in talabalar%}
+        <p>
+            {{ forloop.counter }}.
+            <a href="/talabalar/{{ talaba.id }}/">
+             {{talaba.ism}}
+            </a>
+             <a href="/talabalar/{{ talaba.id }}/delete/confirm/">
+                <button>O'chirish</button>
+             </a>
+            <a href="/talabalar/{{ talaba.id }}/update/">
+                <button>Tahrirlash</button>
+            </a>
+        </p>
+    {% endfor %}
+    <hr>
+    <h3>Yangi talaba qo'shish</h3>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Ism:</label>
+        <input id="name" type="text" name="ism" required>
+        <br><br>
+        <label for="group">Guruh:</label>
+        <input id="group" type="text" name="guruh" required>
+        <br><br>
+        <label for="course">Kurs:</label>
+        <input id="course" type="number" name="kurs" value="1" required>
+        <br><br>
+        <label for="book">Kitob_soni:</label>
+        <input id="book" type="number" name="kitob_soni" value="0">
+        <br><br>
+        <button>Qo'shish</button>
+    </form>
+</body>
+</html>
